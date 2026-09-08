@@ -1,0 +1,25 @@
+[package]
+name = "slint-cflat"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[dependencies]
+slint-interpreter = { version = "1.17.1", default-features = false, features = [
+	"backend-winit",
+	"renderer-femtovg",
+	"renderer-software",
+	"accessibility",
+	"compat-1-2"
+] }
+i-slint-core = "1.17.1"
+spin_on = "0.1"
